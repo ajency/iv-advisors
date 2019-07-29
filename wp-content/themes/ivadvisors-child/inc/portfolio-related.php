@@ -184,8 +184,13 @@ function thb_social_article_detail() {
 					<?php if (in_array('linkedin',$sharing_type)) { ?>
 					<a href="<?php echo esc_url('https://www.linkedin.com/cws/share?url=' . esc_url( $permalink ) . ''); ?>" class="social linkedin boxed-icon white-fill"><i class="fa fa-linkedin"></i></a>
 					<?php } ?>
+					<!-- Whatsapp sharing onn desktop -->
 					<?php if (in_array('whatsapp',$sharing_type)) { ?>
-					<a href="<?php echo 'whatsapp://send?text=' . rawurlencode( esc_url( $permalink ) ).''; ?>" class="whatsapp social boxed-icon white-fill" data-href="<?php echo esc_url( $permalink ); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
+					<a href="<?php echo 'https://web.whatsapp.com/send?text=' . rawurlencode( esc_url( $permalink ) ).''; ?>" id="whatsapp-desktop" class="whatsapp social boxed-icon white-fill" data-href="<?php echo esc_url( $permalink ); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
+					<?php } ?>
+					<!-- Whatsapp sharing onn mobile -->
+					<?php if (in_array('whatsapp',$sharing_type)) { ?>
+					<a href="<?php echo 'whatsapp://send?text=' . rawurlencode( esc_url( $permalink ) ).''; ?>" id="whatsapp-mobile" class="whatsapp social boxed-icon white-fill" data-href="<?php echo esc_url( $permalink ); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp"></i></a>
 					<?php } ?>
 					<?php if (in_array('facebook-messenger',$sharing_type)) { ?>
 						<?php $fb_app_id = ot_get_option( 'facebook_app_id'); ?>
