@@ -9,3 +9,95 @@
 	Text Domain: ivadvisors
 	Domain Path: /inc/languages
 */
+
+
+/** Custom Css For Media Page **/
+.page-banner{
+	padding-bottom: 40px;
+}
+.banner-img{
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 24vh;
+    padding-bottom: 24vh;
+}
+.page-title{
+    font-size: 42px;
+    text-align: center;
+    color: white;
+    text-align: left;
+}
+.media-list-view{
+	width: 100%;
+	padding: 40px 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.single-list-item{
+	list-style: none;
+	display: flex;
+	align-items: flex-start;
+}
+.single-list-item span.item-date{
+	width: 18%;
+    color: #999;
+    line-height: 1em;
+}
+.single-list-item .item-meta{
+	width: 64%;
+	margin-top: -10px;
+}
+span.meta-title{
+	color: #000;
+    font-size: 24px;
+}
+.meta-description{
+    color: #767676;
+    margin-bottom: 0;
+    letter-spacing: .025ch
+}
+.single-list-item .item-actions{
+	width: 18%;
+}
+a.item-action{
+    color: #767676;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .091em;
+}
+.pagination_nav{
+	text-align: center;
+    padding: 60px 0;
+    margin: 40px 0;
+}
+.pagination_nav a, .pagination_nav span{
+    margin: 0 10px;
+}
+
+/** Media Queries **/
+
+@media only screen and (max-width: 991px){
+    .page-title{
+        margin: 0 15px;
+    }
+    .single-list-item{
+        display: block;
+        padding: 0 20px;
+    }
+    .single-list-item .item-actions{
+        text-align: left !important;
+        width: 100%;
+    }
+    .single-list-item  .item-meta{
+        padding: 10px 0px;
+        margin: 0;
+        width: 100%;
+    }
+    .meta-description{
+        padding: 10px 0;
+    }
+}
