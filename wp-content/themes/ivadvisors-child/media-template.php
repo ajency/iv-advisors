@@ -8,14 +8,8 @@
 global $wp_query;
 ?>
 
+	<?php the_content(); ?>
 
-	<div class="page-banner">
-		<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );?>
-		<div id="post" class="banner-img" style="background-image: url('<?php echo $thumb['0'];?>')">
-			<h1 class="page-title row"><?php wp_title(''); ?></h1>
-		</div>
-	</div>
-	
 	<?php 
 		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 		// the query

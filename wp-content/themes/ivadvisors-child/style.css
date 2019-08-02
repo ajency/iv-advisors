@@ -12,25 +12,7 @@
 
 
 /** Custom Css For Media Page **/
-.page-banner{
-	padding-bottom: 40px;
-}
-.banner-img{
-    width: 100%;
-    height: 100%;
-    min-height: 180px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 24vh;
-    padding-bottom: 24vh;
-}
-.page-title{
-    font-size: 42px;
-    text-align: center;
-    color: white;
-    text-align: left;
-}
+
 .media-list-view{
 	width: 100%;
 	padding: 40px 0;
