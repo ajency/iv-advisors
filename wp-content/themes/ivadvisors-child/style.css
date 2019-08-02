@@ -35,6 +35,7 @@
 span.meta-title{
 	color: #000;
     font-size: 24px;
+    text-transform: capitalize;
 }
 .meta-description{
     color: #767676;
