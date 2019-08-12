@@ -21,3 +21,11 @@ function iva_register_custom_post_types() {
 	register_post_type( 'press_media', $args );
 }
 add_action( 'init', 'iva_register_custom_post_types' );
+
+
+function if_change_recipient_comment_notification( $emails, $comment_id ){
+ 	$recipient_email = 'sunildias@iv-advisors.com';
+ 
+ 	return array( $recipient_email );
+}
+add_filter( 'comment_notification_recipients', 'if_change_recipient_comment_notification', 10, 2 ); 
