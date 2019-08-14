@@ -17,18 +17,10 @@
 			<div class="mobile-menu-top">
 				<?php do_action( 'thb_language_switcher_mobile' ); ?>
 				<?php do_action( 'thb_mobile_search' ); ?>
-				<?php
-					if (has_nav_menu('nav-menu')) {
-						wp_nav_menu( array( 'theme_location' => 'nav-menu', 'depth' => 4, 'container' => false, 'menu_class' => 'thb-mobile-menu', 'walker' => new thb_mobileDropdown ) );
-					}
-				?>
+				<?php get_template_part( 'inc/templates/header/mobile-menu' ); ?>
 			</div>
 			<div class="mobile-menu-bottom">
-				<?php
-					if (has_nav_menu('secondary-menu')) {
-						wp_nav_menu( array( 'theme_location' => 'secondary-menu', 'depth' => 1, 'container' => false, 'menu_class' => 'thb-secondary-menu'  ) );
-					}
-				?>
+				<?php get_template_part( 'inc/templates/header/mobile-menu-secondary' ); ?> 
 				<?php if ($mobile_menu_footer = ot_get_option( 'mobile_menu_footer')) { ?>
 					<div class="menu-footer">
 						<?php echo do_shortcode($mobile_menu_footer); ?>

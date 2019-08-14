@@ -424,6 +424,21 @@ vc_add_param("vc_column", array(
 	'weight' => 1,
 	"description" => esc_html__( "If you enable this, this column will be fixed.", 'revolution' )
 ));
+vc_add_param("vc_column", array(
+	"type" => "textfield",
+	"heading" => esc_html__( "Video Background (MP4)", 'revolution' ),
+	"param_name" => "thb_video_bg",
+	'weight' => 1,
+	"description" => esc_html__( "You can specify a video background file here (mp4). Row Background Image will be used as Poster.", 'revolution' ),
+	"dependency" => array('element' => "video_bg", 'value' => array('yes'))
+));
+vc_add_param("vc_column", array(
+	"type" => "colorpicker",
+	"heading" => esc_html__( "Video Overlay Color", 'revolution' ),
+	"param_name" => "thb_video_overlay_color",
+	'weight' => 1,
+	"description" => esc_html__( "If you want, you can select an overlay color.", 'revolution' )
+));
 vc_add_param("vc_column_inner", array(
 	"type" => "dropdown",
 	"heading" => esc_html__( "Column Content Color", 'revolution' ),
@@ -520,6 +535,16 @@ vc_map( array(
 				'Style 2' => "style2",
 				'Style 3' => "style3",
 			),
+		),
+		array(
+			"type" => "checkbox",
+			"heading" => esc_html__( "Window Scrolling", "revolution"),
+			"param_name" => "tabs_scroll",
+			"value" => array(
+				"Yes" => "true"
+			),
+			"std" => "true",
+			"description" => esc_html__( "When enabled, window will scroll to top of the clicked section.", "revolution")
 		),
 	),
 	"description" => esc_html__( "Toggles or Accordions", "revolution"),
@@ -3410,6 +3435,21 @@ vc_map( array(
 	      "description" => esc_html__( "Select which categories you want to filter", "revolution"),
 	      "dependency" => array('element' => "add_filters", 'value' => array( 'true' ))
 	  ),
+		array(
+		  "type" => "dropdown",
+		  "heading" => esc_html__( "Category Ordering", 'revolution' ),
+		  "param_name" => "category_order",
+		  "admin_label" => true,
+		  "value" => array(
+				'By Name'          => "name",
+				'By Post Count' => "count",
+				'By ID'            => "term_id"
+		  ),
+			"group" => "Filters",
+			"std" => 'name',
+		  "description" => esc_html__( "This changes the ordering of categories", 'revolution' ),
+			"dependency" => array('element' => "add_filters", 'value' => array( 'true' ))
+		),
 	  array(
 	      "type" => "dropdown",
 	      "heading" => esc_html__( "Filter Style", "revolution"),
@@ -3550,6 +3590,21 @@ vc_map( array(
 	      "description" => esc_html__( "Select which categories you want to filter", "revolution"),
 	      "dependency" => array('element' => "add_filters", 'value' => array( 'true' ))
 	  ),
+		array(
+		  "type" => "dropdown",
+		  "heading" => esc_html__( "Category Ordering", 'revolution' ),
+		  "param_name" => "category_order",
+		  "admin_label" => true,
+		  "value" => array(
+				'By Name'       => "name",
+				'By Post Count' => "count",
+				'By ID'         => "term_id",
+		  ),
+			"group" => "Filters",
+			"std" => 'name',
+		  "description" => esc_html__( "This changes the ordering of categories", 'revolution' ),
+			"dependency" => array('element' => "add_filters", 'value' => array( 'true' ))
+		),
 	  array(
 	      "type" => "dropdown",
 	      "heading" => esc_html__( "Filter Style", "revolution"),

@@ -227,9 +227,10 @@
 	    	left: auto;
 	    	right: 4vw;
 	    	bottom: 10vh;
-	    	 @include translateX(0%);
+	    	@include translateX(0%);
 	    }
       .rtl & {
+        direction: ltr;
         @include min-break($break-small) {
   	    	right: auto;
   	    	left: 4vw;

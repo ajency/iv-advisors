@@ -1525,13 +1525,31 @@
 		display: block;
 		right: -15px;
 	}
+
+	.rtl & {
+		right: auto;
+		left: 0;
+		@include transform(translateY(-50%) rotateZ(-90deg));
+		@include min-break($break-small) {
+			left: -15px;
+		}
+	}
 }
 #thb-featured-portfolio {
 	max-width: 400px;
 	@include translateX(100%);
+
 	.open-featured & {
 		@include translateX(0%);
+
+		.rtl & {
+			@include translateX(0%);
+		}
 	}
+	.rtl & {
+		@include translateX(-100%);
+	}
+
 	.side-panel-content {
 		padding: 0;
 

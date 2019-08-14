@@ -42,7 +42,8 @@ submit,
 .button,
 .btn,
 .btn-block,
-.btn-text {
+.btn-text,
+.vc_btn3 {
 	<?php thb_typeoutput($button_font); ?>
 }
 <?php } ?>
@@ -368,7 +369,7 @@ h6 {
 	input[type="submit"].style4,.button.style4,.btn.style4,
 	[class^="tag-cloud-link"]:hover,
 	.boxed-icon.email:hover,
-	.wpb_text_column a:after,
+	.wpb_text_column a:not(.btn):not(.button):after,
 	.thb-client-row.has-border.thb-opacity.with-accent .thb-client:hover,
 	.thb-pricing-table.style1 .thb-pricing-column.highlight-true .pricing-container,
 	.woocommerce-MyAccount-navigation ul li:hover a,.woocommerce-MyAccount-navigation ul li.is-active a,

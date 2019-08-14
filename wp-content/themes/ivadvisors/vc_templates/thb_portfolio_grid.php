@@ -1,7 +1,25 @@
 <?php function thb_portfolio_grid( $atts, $content = null ) {
   $atts = vc_map_get_attributes( 'thb_portfolio_grid', $atts );
   extract( $atts );
-  $filter_categories_array = $filter_categories ? explode(',',$filter_categories) : false;
+
+  $filter_categories_array = [];
+
+  $args = array(
+    'taxonomy'   => 'portfolio-category',
+ 		'orderby'    => $category_order,
+		'order'      => 'ASC',
+		'hide_empty' => '0',
+		'include'	   => $filter_categories,
+	);
+	if ( $category_order === 'count' ) {
+		$args['order'] = 'DESC';
+	}
+	$portfolio_categories = new WP_Term_Query( $args );
+
+  foreach ( $portfolio_categories ->terms as $term ) {
+    $filter_categories_array[] = $term->term_id;
+  }
+  
   $source_data = VcLoopSettings::parseData( $source );
   $query_builder = new ThbLoopQueryBuilder( $source_data );
   $posts = $query_builder->build();

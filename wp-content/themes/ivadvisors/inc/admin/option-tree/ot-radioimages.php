@@ -587,14 +587,14 @@ function thb_filter_spacing_fields( $array, $field_id ) {
 add_filter( 'ot_recognized_spacing_fields', 'thb_filter_spacing_fields', 10, 2 );
 
 function thb_filter_measurement_unit_types( $array, $field_id ) {
-	if ( in_array( $field_id, array("site_borders_width") ) ) {
+	if ( in_array( $field_id, array( 'site_borders_width' ) ) ) {
 	  $array = array(
 	    'px' => 'px',
 	    'em' => 'em',
 	    'pt' => 'pt',
 	  );
 	}
-	if ( in_array( $field_id, array("thb_grid_size") ) ) {
+	if ( in_array( $field_id, array( 'thb_grid_size' ) ) ) {
 	  $array = array(
 	    'px'  => 'px',
 	    'em'  => 'em',
@@ -620,6 +620,16 @@ function thb_ot_line_height_range_interval( $array, $field_id ) {
 	return 0.05;
 }
 add_filter( 'ot_line_height_range_interval', 'thb_ot_line_height_range_interval', 10, 2 );
+
+function thb_ot_letter_spacing_high_range( $array, $field_id ) {
+	return '0.2';
+}
+add_filter( 'ot_letter_spacing_high_range', 'thb_ot_letter_spacing_high_range', 10, 2 );
+
+function thb_ot_letter_spacing_low_range( $array, $field_id ) {
+	return '-0.2';
+}
+add_filter( 'ot_letter_spacing_low_range', 'thb_ot_letter_spacing_low_range', 10, 2 );
 
 function thb_filter_ot_recognized_link_color_fields( $array, $field_id ) {
 	$array = array(

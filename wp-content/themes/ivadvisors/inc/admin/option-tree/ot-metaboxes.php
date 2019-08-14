@@ -29,7 +29,7 @@ function thb_custom_meta_boxes() {
     'pages'       => apply_filters( 'revolution_page_metabox_pages', array( 'page' )),
     'context'     => 'normal',
     'priority'    => 'high',
-    'fields'      => array(
+    'fields'      => apply_filters( 'revolution_page_metabox_fields', array(
     	array(
     	  'id'          => 'tab1',
     	  'label'       => esc_html__( 'Header Settings', 'revolution' ),
@@ -140,7 +140,7 @@ function thb_custom_meta_boxes() {
     	  'desc'        => esc_html__( 'Display a sidebar on this page.', 'revolution' ),
     	  'std'         => 'off',
     	)
-    )
+    ))
   );
 
   $portfolio_metabox = array(
@@ -149,7 +149,7 @@ function thb_custom_meta_boxes() {
     'pages'       => apply_filters( 'revolution_portfolio_metabox_pages', array( 'portfolio' )),
     'context'     => 'normal',
     'priority'    => 'high',
-    'fields'      => array(
+    'fields'      => apply_filters( 'revolution_portfolio_metabox_fields', array(
     	array(
     	  'id'          => 'tab1',
     	  'label'       => esc_html__( 'Listing Settings', 'revolution' ),
@@ -273,7 +273,7 @@ function thb_custom_meta_boxes() {
     	  'type'        => 'background',
     	  'desc'        => esc_html__( 'Background settings for the portfolio.', 'revolution' )
     	)
-    )
+    ))
   );
   $post_metabox = array(
     'id'          => 'post_meta_style',
@@ -282,28 +282,7 @@ function thb_custom_meta_boxes() {
     'context'     => 'normal',
     'priority'    => 'high',
     'fields'      => array(
-	    // array(
-	    //   'id'          => 'tab1',
-	    //   'label'       => esc_html__( 'Header Settings', 'revolution' ),
-	    //   'type'        => 'tab'
-	    // ),
-	    // array(
-	    //   'label'       => esc_html__( 'Main Header Color', 'revolution' ),
-	    //   'id'          => 'header_color',
-	    //   'type'        => 'radio',
-	    //   'desc'        => esc_html__( 'Overrides the main header color of the theme. Changes the logo and menu colors', 'revolution' ),
-	    //   'choices'     => array(
-	    //     array(
-	    //       'label'       => esc_html__( 'Light', 'revolution' ),
-	    //       'value'       => 'light-header'
-	    //     ),
-	    //     array(
-	    //       'label'       => esc_html__( 'Dark', 'revolution' ),
-	    //       'value'       => 'dark-header'
-	    //     )
-	    //   ),
-	    //   'std'         => 'light-header'
-	    // ),
+
 	    array(
 	      'id'          => 'tab2',
 	      'label'       => esc_html__( 'Standard/Image Format Settings', 'revolution' ),

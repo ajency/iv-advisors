@@ -265,7 +265,7 @@ window.onpageshow = function(event) {
 					.add(base.getMobileAni().play(), "mobile-middle");
 
 				mobile_toggle.on('click', function() {
-					if (thb_md.mobile() || $(window).width() < 1200 || header.is('.style6, .style7, .style8, .style9') ) {
+					if (thb_md.mobile() || $(window).width() < themeajax.settings.mobile_menu_breakpoint || header.is('.style6, .style7, .style8, .style9') ) {
 						if ( mainTl.progress() > 0) { mainTl.timeScale(1.2).reverse(); }
 						if ( base.mobileTl.reversed() ) { base.mobileTl.timeScale(1).play(); } else { base.mobileTl.timeScale(1.2).reverse(); }
 					} else {
@@ -1036,7 +1036,7 @@ window.onpageshow = function(event) {
           var _this = $(this),
               delegate = _this.hasClass('thb-portfolio') ? '.thb-portfolio-link.mfp-image, .thb-portfolio-link.mfp-video' : 'a';
 
-          $(this).magnificPopup({
+          _this.magnificPopup({
             tClose: themeajax.l10n.lightbox_close,
   					delegate: delegate,
             tLoading: themeajax.l10n.lightbox_loading,
@@ -1077,7 +1077,7 @@ window.onpageshow = function(event) {
 
   							$.magnificPopup.instance.prev = function() {
   								var _this = this;
-  								this.wrap.removeClass('mfp-image-loaded');
+  								_this.wrap.removeClass('mfp-image-loaded');
 
   								setTimeout( function() { $.magnificPopup.proto.prev.call(_this); }, 125);
   							};
@@ -1242,6 +1242,7 @@ window.onpageshow = function(event) {
 							accordion = _this.hasClass('has-accordion'),
 							index = 0,
 							sections = _this.find('.vc_tta-panel'),
+              scrolling = _this.data('scroll'),
 							active = sections.eq(index);
 
 					if (accordion) {
@@ -1262,15 +1263,16 @@ window.onpageshow = function(event) {
 							if (accordion) {
 								var offset = that.parents('.vc_tta-panel-heading').offset().top - $('#wpadminbar').outerHeight();
 
-                if (themeajax.settings.fixed_header_scroll === 'off') {
-                  offset = offset - $('.header').outerHeight();
-                }
-								TweenMax.to(win, 1, { scrollTo: { y: offset, autoKill:false }, onComplete: function(){
-                  if (themeajax.settings.fixed_header_scroll === 'on') {
-                    header.addClass('headroom--unpinned');
+                if (scrolling) {
+                  if (themeajax.settings.fixed_header_scroll === 'off') {
+                    offset = offset - $('.header').outerHeight();
                   }
-                } });
-
+  								TweenMax.to(win, 1, { scrollTo: { y: offset, autoKill:false }, onComplete: function(){
+                    if (themeajax.settings.fixed_header_scroll === 'on') {
+                      header.addClass('headroom--unpinned');
+                    }
+                  } });
+                }
 							}
               if (_panel.find('.masonry')) {
                 _panel.find('.masonry').isotope('layout');
@@ -1432,7 +1434,7 @@ window.onpageshow = function(event) {
 							flkty.paused = true;
 						}
 					}).trigger('scroll.flkty');
-          _this.find('img').on('lazyloaded', function() {
+          _this.find('img').on('lazyloaded imagesLoaded', function() {
             _this.flickity('resize');
   				});
           body.on('jetpack-lazy-images-load', function() {
@@ -1440,9 +1442,6 @@ window.onpageshow = function(event) {
               _this.flickity('resize');
             }
           });
-          _this.find('img').on('imagesLoaded', function() {
-            _this.flickity('resize');
-  				});
 				});
 
 			}
@@ -2155,6 +2154,9 @@ window.onpageshow = function(event) {
 							var portrait = $(slider.$slides[i]).find('.author_image').attr('src'),
 									title = $(slider.$slides[i]).find('.title').text();
 
+              if ( portrait == 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' ) {
+                portrait = $(slider.$slides[i]).find('.author_image').attr('data-src');
+              }
 							return '<a class="portrait_bullet" title="'+title+'" style="background-image:url('+portrait+');"></a>';
 						};
 					} else if (_this.hasClass('thb-portfolio-slider-style7')) {
@@ -3567,7 +3569,7 @@ window.onpageshow = function(event) {
 			}
 		},
 		shopLoading: {
-			selector: '.post-type-archive-product ul.products.thb-main-products',
+			selector: '.post-type-archive-product ul.products.thb-main-products, .tax-product_cat ul.products.thb-main-products',
 			thb_loading: false,
 			scrollInfinite: false,
 			href: false,

@@ -2744,7 +2744,11 @@ function thb_custom_theme_options() {
             'value'       => 'lazyload'
           ),
           array(
-            'label'       => esc_html__( 'No Preloader', 'revolution' ),
+            'label'       => esc_html__( 'Preloader + Lazy Load Images', 'revolution' ),
+            'value'       => 'preloadlazyload'
+          ),
+          array(
+            'label'       => esc_html__( 'No Preloading', 'revolution' ),
             'value'       => 'none'
           )
         ),
@@ -2772,7 +2776,8 @@ function thb_custom_theme_options() {
         ),
         'std'         => 'preloader-material',
         'section'     => 'customization',
-        'condition'   => 'thb_preload_type:is(preloader)'
+        'operator' 		=> 'or',
+        'condition'   => 'thb_preload_type:is(preloader),thb_preload_type:is(preloadlazyload)'
       ),
       array(
         'id'          => 'customization_tab6',

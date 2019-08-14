@@ -255,6 +255,9 @@
 		text-align: center;
 		@include scale(0.95);
 
+		.thb-secondary-bar {
+			display: none;
+		}
 		.custom_scroll {
 			flex: 1;
 		}
@@ -297,6 +300,9 @@
     @include min-break($break-small) {
       padding: 0;
     }
+		.thb-secondary-bar {
+			display: none;
+		}
     .menubg-placeholder {
     	position: fixed;
     	top: 0;

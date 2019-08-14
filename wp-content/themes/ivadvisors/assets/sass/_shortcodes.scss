@@ -1176,6 +1176,19 @@ table tbody th, table tbody td {
 			@extend .general-shadow-styles;
 		}
 	}
+	&.thb-freescroll-text {
+		&.flickity-enabled {
+			.columns {
+				opacity: 1;
+			}
+		}
+		.columns {
+			opacity: 0;
+			display: inline-flex;
+			width: auto;
+			max-width: none;
+		}
+	}
 	&.instagram-row {
 		figure {
 			margin-bottom: 35px;
@@ -1389,7 +1402,7 @@ table tbody th, table tbody td {
 }
 /* Text Element Links */
 .wpb_text_column {
-	a {
+	a:not(.btn):not(.button) {
 		display: inline-block;
 		position: relative;
 		&:after {

@@ -2,7 +2,7 @@
 
 /* Adding Lazyload Class */
 function thb_add_lazy_class( $html = '', $new_class ) {
-	if ('lazyload' === ot_get_option( 'thb_preload_type', 'preloader')) {
+	if ( in_array( ot_get_option( 'thb_preload_type', 'preloader' ), array( 'lazyload', 'preloadlazyload' ) ) ) {
 		$pattern = '/class="([^"]*)"/';
 		// Class attribute set.
 		if ( preg_match( $pattern, $html, $matches ) ) {
@@ -24,7 +24,7 @@ function thb_add_lazy_class( $html = '', $new_class ) {
 
 /* Filter Images */
 function thb_lazy_images_filter( $content ) {
-	if ('lazyload' === ot_get_option( 'thb_preload_type', 'preloader')) {
+	if ( in_array( ot_get_option( 'thb_preload_type', 'preloader' ), array( 'lazyload', 'preloadlazyload' ) ) ) {
 		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
 	    return $content;
 	  }
@@ -68,7 +68,7 @@ function thb_lazy_images_filter( $content ) {
 
 /* Change source to low quality */
 function thb_lazy_low_quality( $attr, $attachment, $size ) {
-	if ('lazyload' === ot_get_option( 'thb_preload_type', 'preloader')) {
+	if ( in_array( ot_get_option( 'thb_preload_type', 'preloader' ), array( 'lazyload', 'preloadlazyload' ) ) ) {
 		$placeholder = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 		// Low Quality Image Placeholders.

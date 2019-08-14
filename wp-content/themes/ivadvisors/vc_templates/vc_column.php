@@ -15,8 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $this WPBakeryShortCode_VC_Column
  */
 $el_class = $width = $css = $offset = $animation = $thb_color = '';
-$el_class = $el_id = $width = $parallax_speed_bg = $parallax_speed_video = $parallax = $parallax_image = $video_bg = $video_bg_url = $video_bg_parallax = $css = $offset = $css_animation = '';
+$el_class = $el_id = $width = $parallax_speed_bg = $parallax_speed_video = $parallax = $parallax_image = $video_bg = $video_bg_url = $video_bg_parallax = $css = $offset = $css_animation = $thb_video_bg = $bg_video_overlay = '';
 $output = '';
+$thb_video_play_button = false;
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -83,6 +84,28 @@ if ( ! $parallax && $has_video_bg ) {
 	$wrapper_attributes[] = 'data-vc-video-bg="' . esc_attr( $video_bg_url ) . '"';
 }
 
+/* Video BG */
+if ( $thb_video_bg !== '' ) {
+	$bg_type = '';
+	$video_type = wp_check_filetype( $thb_video_bg, wp_get_mime_types() );
+	$pattern = '/background-image:\s*url\(\s*([\'"]*)(?P<file>[^\1]+)\1\s*\)/i';
+	preg_match($pattern, $css, $bg_image);
+
+	$inner_attributes[] = 'data-vide-bg="'.$video_type['ext'].': '.esc_attr($thb_video_bg). ( isset($bg_image[2]) ? ', poster: '.esc_attr($bg_image[2]) : '').'"';
+
+	if (isset($bg_image[2])) {
+		$bg_url = strtok($bg_image[2], '?');
+		$bg_type = wp_check_filetype( $bg_url, wp_get_mime_types() );
+	}
+
+	$inner_attributes[] = 'data-vide-options="posterType: '.( isset($bg_image[2]) ? esc_attr($bg_type['ext']) : 'none').', loop: true, muted: true, position: 50% 50%, resizing: true'. ($thb_video_play_button ? ', autoplay:false' : '').'"';
+	if ( $thb_video_overlay_color != '' ) {
+		$bg_video_overlay = '<div class="thb_video_overlay" style="background-color: '.esc_attr($thb_video_overlay_color) .';"></div>';
+	}
+
+	$css_classes[] = 'thb_video_bg';
+}
+
 $css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode( ' ', array_filter( $css_classes ) ), $this->settings['base'], $atts ) );
 $wrapper_attributes[] = 'class="' . esc_attr( trim( $css_class ) ) . '"';
 if ( ! empty( $el_id ) ) {
@@ -94,11 +117,13 @@ $inner_attributes[] = 'class="vc_column-inner ' .esc_attr(	$box_shadow ). ' ' . 
 if ($thb_border_radius) {
 	$inner_attributes[] = 'style="border-radius:'.esc_attr($thb_border_radius).'"';
 }
+
 $output .= '<div ' . implode( ' ', $wrapper_attributes ) . '>';
 $output .= '<div ' . implode( ' ', $inner_attributes ) . '>';
 $output .= '<div class="wpb_wrapper">';
 $output .= wpb_js_remove_wpautop( $content );
 $output .= '</div>';
+$output .= $bg_video_overlay;
 $output .= '</div>';
 $output .= '</div>';
 

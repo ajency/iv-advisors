@@ -6,6 +6,7 @@
   $el_class[] = 'thb-freescroll';
   $el_class[] = $extra_class;
   $el_class[] = $thb_margins;
+  $el_class[] = 'thb-freescroll-'.$type;
   $el_class[] = $type === 'instagram' ? 'instagram-row' : '';
   $el_class[] = $type === 'portfolios' ? 'thb-portfolio' : '';
   $el_class[] = $type === 'images' ? $lightbox : '';
@@ -23,6 +24,9 @@
 				$content_safe = preg_replace('#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content);
 				?>
 				<div class="small-12 columns text-content">
+					<?php echo wp_kses_post($content_safe); ?>
+				</div>
+        <div class="small-12 columns text-content">
 					<?php echo wp_kses_post($content_safe); ?>
 				</div>
 				<?php

@@ -3,15 +3,10 @@
 function thb_center_nav_menu_items($items, $args) {
 	if ( $args->theme_location == 'nav-menu') {
 		if (is_array($items) || is_object($items)) {
-			$logo = ot_get_option( 'logo', Thb_Theme_Admin::$thb_theme_directory_uri . 'assets/img/logo.png');
-			$logo_light = ot_get_option( 'logo_light', Thb_Theme_Admin::$thb_theme_directory_uri . 'assets/img/logo-light.png');
 
 			ob_start();
 			?>
-			<div class="logo-holder"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logolink" title="<?php bloginfo('name'); ?>">
-				<img src="<?php echo esc_url( $logo ); ?>" class="logoimg logo-dark" alt="<?php bloginfo('name'); ?>"/>
-				<img src="<?php echo esc_url( $logo_light ); ?>" class="logoimg logo-light" alt="<?php bloginfo('name'); ?>"/>
-			</a></div>
+			<?php do_action( 'thb_logo', true ); ?>
 			<?php
 			$logo_html = ob_get_clean();
 			$menu_items = array();

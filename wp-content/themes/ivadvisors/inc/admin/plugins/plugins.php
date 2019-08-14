@@ -28,7 +28,7 @@ function thb_register_required_plugins() {
 		$plugins[] = array(
 			'name'               => 'WPBakery Visual Composer',
 			'slug'               => 'js_composer',
-			'source'             => get_stylesheet_directory() . '/inc/admin/plugins/plugins/codecanyon-242431-visual-composer-page-builder-for-wordpress-wordpress-plugin.zip',
+			'source'             => get_template_directory() . '/inc/admin/plugins/plugins/codecanyon-242431-visual-composer-page-builder-for-wordpress-wordpress-plugin.zip',
 			'version'            => '6.0.2',
 			'force_activation'   => false,
 			'force_deactivation' => false,
@@ -47,8 +47,8 @@ function thb_register_required_plugins() {
 	$plugins[] = array(
 		'name'               => esc_html__( 'Revolution - Required Plugin', 'revolution' ),
 		'slug'               => 'revolution-plugin',
-		'source'             => get_stylesheet_directory() . '/inc/plugins/revolution-plugin.zip',
-		'version'            => '1.2.1',
+		'source'             => get_template_directory() . '/inc/plugins/revolution-plugin.zip',
+		'version'            => '1.2.2.1',
 		'required'           => true,
 		'force_activation'   => false,
 		'force_deactivation' => false,

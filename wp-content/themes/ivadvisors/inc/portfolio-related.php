@@ -1,35 +1,36 @@
 <?php
 function thb_get_masonry_size($size = '', $thb_grid_type = 4) {
+
 	$class_image = array();
 	switch($size) {
 		case 'large':
 			$class_image['class'] = 'small-12 medium-6 large-6 masonry-large';
-			if ($thb_grid_type === '3') {
+			if ($thb_grid_type == '3') {
 				$class_image['class'] = 'small-12 medium-8 masonry-large';
 			}
-			$class_image['image_size'] = $thb_grid_type === '3' ? 'revolution-squaresmall-x3' : 'revolution-square-x3';
+			$class_image['image_size'] = $thb_grid_type == '3' ? 'revolution-squaresmall-x3' : 'revolution-square-x3';
 			break;
 		case 'wide':
 			$class_image['class'] = 'small-12 medium-6 large-6 masonry-wide';
-			if ($thb_grid_type === '3') {
+			if ($thb_grid_type == '3') {
 				$class_image['class'] = 'small-12 medium-8 masonry-wide';
 			}
-			$class_image['image_size'] = $thb_grid_type === '3' ? 'revolution-squaresmallwide-x3' : 'revolution-wide-x2';
+			$class_image['image_size'] = $thb_grid_type == '3' ? 'revolution-squaresmallwide-x3' : 'revolution-wide-x2';
 			break;
 		case 'tall':
 			$class_image['class'] = 'small-12 medium-6 large-3 masonry-tall';
-			if ($thb_grid_type === '3') {
+			if ($thb_grid_type == '3') {
 				$class_image['class'] = 'small-12 medium-4 masonry-tall';
 			}
-			$class_image['image_size'] = $thb_grid_type === '3' ? 'revolution-squaresmalltall-x3' : 'revolution-tall-x2';
+			$class_image['image_size'] = $thb_grid_type == '3' ? 'revolution-squaresmalltall-x3' : 'revolution-tall-x2';
 			break;
 		case 'small':
 		default:
 			$class_image['class'] = 'small-12 medium-6 large-3 masonry-small';
-			if ($thb_grid_type === '3') {
+			if ($thb_grid_type == '3') {
 				$class_image['class'] = 'small-12 medium-4 masonry-small';
 			}
-			$class_image['image_size'] = $thb_grid_type === '3' ? 'revolution-squaresmall-x2' : 'revolution-square-x2';
+			$class_image['image_size'] = $thb_grid_type == '3' ? 'revolution-squaresmall-x2' : 'revolution-square-x2';
 			break;
 	}
 	return $class_image;
@@ -63,18 +64,6 @@ function thb_portfolio_categories($categories, $id, $style, $portfolio_id_array 
 					 	$term = get_term($cat);
 
 	          if ( $term && $term->taxonomy === 'portfolio-category' ) {
-  					 	$args = array(
-  					 		'include'   => implode( ',', $portfolio_id_array ),
-  					 		'post_type' => 'portfolio',
-  					 		'tax_query' => array(
-					 				array(
-					 					'taxonomy' => 'portfolio-category',
-					 					'field'    => 'slug',
-					 					'terms'    => array( $term->slug ),
-					 					'operator' => 'IN',
-					 				)
-					 			),
-  					 	);
   					 	echo '<li><a data-filter=".thb-cat-' . esc_attr( $term->slug ) . '">' . esc_html( $term->name ) . '</a></li>';
 					 	}
 					 }
@@ -87,20 +76,7 @@ function thb_portfolio_categories($categories, $id, $style, $portfolio_id_array 
 				<?php
 					 foreach ($categories as $cat) {
 					 	$term = get_term($cat);
-
-					 	$args = array(
-					 		'include'   => implode( ',', $portfolio_id_array ),
-					 		'post_type' => 'portfolio',
-					 		'tax_query' => array(
-				 				array(
-				 					'taxonomy' => 'portfolio-category',
-				 					'field'    => 'slug',
-				 					'terms'    => array( $term->slug ),
-				 					'operator' => 'IN',
-				 				)
-				 			),
-					 	);
-					 	echo '<option value=".thb-cat-' . esc_attr($term->slug) . '">' . esc_html($term->name) . '</option>';
+					 	echo '<option value=".thb-cat-' . esc_attr( $term->slug ) . '">' . esc_html( $term->name ) . '</option>';
 					 }
 				?>
 			</select>

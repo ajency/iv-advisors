@@ -148,6 +148,38 @@
 }
 .columns {
 
+	&.thb_video_bg {
+		position: relative;
+		overflow: hidden;
+		-webkit-background-size: cover !important;
+		-moz-background-size: cover !important;
+		-o-background-size: cover !important;
+		background-size: cover !important;
+
+		.wpb_wrapper {
+			z-index: 5;
+			position: relative;
+		}
+		.thb-row-video-bg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			min-height: 100%;
+			z-index: -1;
+			transform: translate3d(-50%, -50%, 0);
+		}
+		.thb_video_overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1;
+			pointer-events: none;
+			transform: translateZ(0);
+		}
+	}
 	.vc_editor.compose-mode .vc_element> & {
 		width: 100%;
 		max-width: 100%;

@@ -20,7 +20,7 @@ function thb_main_styles() {
 	wp_enqueue_style( 'thb-fa', esc_url( $thb_theme_directory_uri ) . 'assets/css/font-awesome.min.css', null, esc_attr( $thb_theme_version ) );
 	wp_enqueue_style( 'thb-app', esc_url( $thb_theme_directory_uri ) . 'assets/css/app.css', null, esc_attr( $thb_theme_version ) );
 
-	if ( wp_unslash( $_SERVER['HTTP_HOST'] ) !== 'revolution.fuelthemes.net' ) {
+	if ( ! defined( 'THB_DEMO_SITE' ) ) {
 		wp_enqueue_style( 'thb-style', get_stylesheet_uri(), null, esc_attr( $thb_theme_version ) );
 	}
 	wp_enqueue_style( 'thb-google-fonts', thb_google_webfont(), null, esc_attr( $thb_theme_version ) );
@@ -166,6 +166,7 @@ function thb_register_js() {
 				'accessibility'                   => apply_filters( 'revolution_accessibility', false ),
 				'touch_threshold'                 => apply_filters( 'revolution_touchthreshold', 5 ),
 				'lightbox_fixedcontent'           => apply_filters( 'revolution_lightbox_fixedcontent', false ),
+				'mobile_menu_breakpoint'          => apply_filters( 'revolution_mobilemenu_breakpoint', 1200 ),
 			),
 			'sounds'   => array(
 				'music_sound'             => ot_get_option( 'music_sound', 'off' ),
