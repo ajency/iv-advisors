@@ -202,6 +202,23 @@ function thb_right_click() {
 }
 add_action( 'wp_footer', 'thb_right_click' );
 
+/* Logo */
+function thb_logo_original( $logo_light_enabled ) {
+	$logo       = ot_get_option( 'logo', Thb_Theme_Admin::$thb_theme_directory_uri . 'assets/img/logo.png');
+	$logo_light = ot_get_option( 'logo_light', Thb_Theme_Admin::$thb_theme_directory_uri . 'assets/img/logo-light.png');
+	?>
+	<div class="logo-holder">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logolink" title="<?php bloginfo('name'); ?>">
+			<img src="<?php echo esc_url( $logo ); ?>" class="logoimg logo-dark" alt="<?php bloginfo('name'); ?>"/>
+			<?php if ( $logo_light_enabled === true ) { ?>
+				<img src="<?php echo esc_url( $logo_light ); ?>" class="logoimg logo-light" alt="<?php bloginfo('name'); ?>"/>
+			<?php } ?>
+		</a>
+	</div>
+	<?php
+}
+add_action( 'thb_logo', 'thb_logo_original', 3, 1 );
+
 /* Mobile Menu */
 function thb_mobile_menu() {
 	$header_style      = ot_get_option( 'header_style', 'style1' );
@@ -213,7 +230,7 @@ add_action( 'thb_mobile_menu', 'thb_mobile_menu' );
 
 /* Preloader */
 function thb_preloader() {
-	if ( 'preloader' === ot_get_option( 'thb_preload_type' ) ) {
+	if ( in_array( ot_get_option( 'thb_preload_type', 'preloader' ), array( 'preloader', 'preloadlazyload' ) ) ) {
 		$thb_preload_icon = ot_get_option( 'thb_preload_icon', 'preloader-material' );
 	?>
 	<div class="thb-page-preloader">
@@ -1096,8 +1113,7 @@ add_action( 'thb_footer_bar', 'thb_footer_bar', 3 );
 
 /* Footer Items */
 function thb_footer_items() {
-	if ( 'on' === ot_get_option( 'scroll_to_top', 'on') ) {
-	?>
+	if ( 'on' === ot_get_option( 'scroll_to_top', 'on') ) { ?>
 		<a href="#" title="<?php esc_attr_e('Scroll To Top', 'revolution' ); ?>" id="scroll_to_top">
 			<div class="thb-animated-arrow circular arrow-top"><?php get_template_part('assets/img/svg/prev_arrow.svg' ); ?></div>
 		</a>
@@ -1855,30 +1871,3 @@ function thb_is_mobile() {
 
   return ($is_mobile->isMobile() && !$is_mobile->isTablet());
 }
-
- /* Custom login page logo
-================================================== */
-function my_login_logo() { ?>
-    <style type="text/css">
-        #login h1 a, .login h1 a {
-            background-image: url('wp-content/uploads/2019/06/iv-advisor-logo-v1.png');
-            height:65px;
-            width:320px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            padding-bottom: 30px;
-        }
-    </style>
-<?php }
-add_action( 'login_enqueue_scripts', 'my_login_logo' );
-
-function my_login_logo_url() {
-    return home_url();
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-function my_login_logo_url_title() {
-    return 'iv-advisors';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
