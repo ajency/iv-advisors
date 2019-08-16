@@ -29,3 +29,30 @@ function if_change_recipient_comment_notification( $emails, $comment_id ){
  	return array( $recipient_email );
 }
 add_filter( 'comment_notification_recipients', 'if_change_recipient_comment_notification', 10, 2 ); 
+
+
+ /* Custom login page logo
+================================================== */
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url('wp-content/uploads/2019/06/iv-advisor-logo-v1.png');
+            height:65px;
+            width:320px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+    return 'iv-advisors';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
